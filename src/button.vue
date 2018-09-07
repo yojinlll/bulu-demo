@@ -10,7 +10,15 @@
 </template>
 <script>
     export default {
-        props:['icon','iconPosition']
+        // props:['icon','iconPosition']
+        props:{
+            icon:{},
+            // 将默认值 undefined 改为 left
+            iconPosition:{
+                type:String,
+                default:'left'
+            }
+        }
     }
 </script>
 <style lang="scss">
@@ -27,6 +35,8 @@
         &:hover{ border-color: var(--border-color-hover); }
         &:active{ background-color: var(--button-active-bg); }
         &:focus{ outline:none; }
+
+        /*css控制svg样式*/
         > .content{ order: 2; }
         > .icon{ order: 1; margin-right: .1em; }
 
