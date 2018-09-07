@@ -16,7 +16,10 @@
             // 将默认值 undefined 改为 left
             iconPosition:{
                 type:String,
-                default:'left'
+                default:'left',
+                validator (value) {
+                    return value === 'left' || value === 'right'
+                }
             }
         }
     }
