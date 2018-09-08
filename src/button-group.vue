@@ -24,7 +24,9 @@
             border-radius: 0;
 
              /* 消除边框叠层bug */
-            margin-left: -1px;
+            &:not(:first-child){
+                margin-left: -1px;
+            }
             &:hover{
                 position: relative;
                 z-index: 1;
