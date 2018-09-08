@@ -1,7 +1,8 @@
 <template>
     <button class="g-button" :class="{[`icon-${iconPosition}`]:true}"
         @click="$emit('click')">
-        <g-icon class="icon" v-if="icon && !loading" :name="icon"></g-icon>
+        <!--    组件化：    index { g-button { g-icon } }   -->
+        <g-icon class="icon" v-if="icon && !loading" :name="icon"></g-icon>     <!--name 绑定 icon.vue 的props-->
         <g-icon class="loading icon" v-if="loading" name="loading"></g-icon>
         <div class="content">
             <slot></slot>
