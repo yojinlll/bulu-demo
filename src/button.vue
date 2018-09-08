@@ -21,7 +21,7 @@
             iconPosition:{
                 type:String,
                 default:'left',
-                validator (value) {
+                validator(value) {
                     return value === 'left' || value === 'right'
                 }
             }

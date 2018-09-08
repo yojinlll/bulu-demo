@@ -21,7 +21,11 @@ new Vue({
 // 单元测试
 
 import chai from 'chai'
+import spies from 'chai-spies'
+chai.use(spies)
+
 const expect = chai.expect
+
 
 // 测试1 setting icon
 {
@@ -94,6 +98,7 @@ const expect = chai.expect
 
 // 测试5 click
 {
+    // mock
     const Constructor = Vue.extend(Button)
     const vm = new Constructor({
         propsData:{
@@ -101,9 +106,9 @@ const expect = chai.expect
         }
     })
     vm.$mount()
-    vm.$on('click',function () {
-        console.log(1)
-    })
+    let spy = chai.spy(function () {console.log('mock')})
+    vm.$on('click',spy)
     let button = vm.$el
     button.click()
+    expect(spy).to.have.been.called()
 }
