@@ -10,8 +10,19 @@
     </button>
 </template>
 <script>
+    // 方法一：导入 icon 组件，避免测试错误
+    import Vue from 'vue'
+    import Icon from './icon'
+    Vue.component('g-icon', Icon)
+
     export default {
-        // props:['icon','iconPosition']
+        /*
+        方法二：更方便的引入，但不起效，hah
+        component:{
+            'g-icon':Icon
+        },
+        */
+
         props:{
             icon:{},
             loading:{
