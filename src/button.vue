@@ -17,11 +17,13 @@
 
     export default {
         /*
-        方法二：更方便的引入，但不起效，hah
-        component:{
+        方法二：更方便的引入 （ 注意要 components )
+        components:{
             'g-icon':Icon
         },
         */
+
+        name:'BuluButton',
 
         props:{
             icon:{},
@@ -39,7 +41,7 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     @keyframes spin {
         0%{ transform: rotate(0deg); }
         100%{ transform: rotate(360deg); }
