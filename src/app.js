@@ -15,10 +15,12 @@ new Vue({
         loading1: false,
         loading2: true,
         loading3: false,
+        message: 'v-model'
     },
     methods: {
-        inputChange (fuck) {
-            console.log(fuck.target.value)
+        inputChange(e) {
+            console.log(e)
+
         }
     }
 })

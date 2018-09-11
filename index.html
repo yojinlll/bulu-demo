@@ -39,16 +39,22 @@
 <div id="app">
 
     <div class="box">
-        <g-input value="vivi" :disabled="true"></g-input>       <!--两种写法-->
-        <g-input value="lufy" readonly></g-input>
-        <g-input value="lulu"></g-input>
+        <g-input v-model="message"></g-input>
+        <p>{{message}}</p>
+        <button @click="message+=1">+1</button>
     </div>
 
     <div class="box">
-        <g-input value="dodo" @change="inputChange"></g-input>
+        <g-input value="disabled" :disabled="true"></g-input>       <!--两种写法-->
+        <g-input value="readonly" readonly></g-input>
+        <g-input value="hello!"></g-input>
+    </div>
+
+    <div class="box">
+        <g-input value="chaneg" @change="inputChange"></g-input>
     </div>
     <div class="box">
-        <g-input value="dodo" error="姓名不能少于两个字"></g-input>
+        <g-input value="error" error="姓名不能少于两个字"></g-input>
     </div>
 
     <div class="box">
