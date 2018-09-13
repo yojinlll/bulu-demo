@@ -1,5 +1,5 @@
 <template>
-    <div class="row" :style="{marginLeft:-gutter/2+'px',marginRight:-gutter/2+'px'}">
+    <div class="row" :style="rowStyle">
         <slot></slot>
     </div>
 </template>
@@ -9,22 +9,20 @@
         props: {
             gutter: [Number, String]
         },
-        // created () {
-        //     console.log('row created')
-        // },
-        mounted () {
-            // console.log('row mounted')
-            // console.log(this.$children)
-            this.$children.forEach((vm) => {        // 遍历 row 的所有 children，并将 gutter 传递过去
+        computed: {
+            rowStyle() {
+                return {
+                    marginLeft: -this.gutter / 2 + 'px',
+                    marginRight: -this.gutter / 2 + 'px'
+                }
+            }
+        },
+        mounted() {
+            this.$children.forEach((vm) => {        // 遍历 row 中 col，将 gutter 传递给 col
                 vm.gutter = this.gutter
             })
         }
     }
-
-    var div = document.createElement('div') // created
-    var childDiv = document.createElement('div') // child created
-    div.appendChild(childDiv) // child mounted
-    document.body.appendChild(div) // mounted
 </script>
 <style scoped lang="scss">
     .row {
