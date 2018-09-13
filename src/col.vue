@@ -41,7 +41,7 @@
 <style scoped lang="scss">
     .col {
         /*background: #eeeeee;*/
-        width: 50%; // 默认不换行 flew-wrap:nowrap
+        /*width: 50%; // 默认不换行 flew-wrap:nowrap*/
         /*border: 1px solid red;*/
         $class-prefix: col-;
         @for $n from 1 through 24 {
