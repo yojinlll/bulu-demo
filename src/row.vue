@@ -40,6 +40,7 @@
 <style scoped lang="scss">
     .row {
         display: flex;
+        /*flex-wrap: wrap;        // 允许换行，当row的两个col的span值都为24时，就呈现两行*/
         &.align-left{
             justify-content: flex-start;
         }
