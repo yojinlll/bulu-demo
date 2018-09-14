@@ -23,28 +23,35 @@
             offset: {
                 type: [Number, String]
             },
-            ipad: { type: Object,validator },
-            narrowPc: { type: Object,validator },
-            pc: { type: Object,validator },
-            widePc: { type: Object,validator },
+            ipad: {type: Object, validator},
+            narrowPc: {type: Object, validator},
+            pc: {type: Object, validator},
+            widePc: {type: Object, validator},
         },
         data() {                // create
             return {
                 gutter: 0,
             }
         },
+        methods:{
+            createClasses (obj, str = '') {
+                if (!obj) { return [] }     //值为 undefined 会产生 bug
+                let array = []
+                if (obj.span) { array.push(`col-${str}${obj.span}`) }           // 关联scss的绑定动态变量
+                if (obj.offset) { array.push(`offset-${str}${obj.offset}`) }
+                return array
+            }
+        },
         computed: {             // mounted，gutter变了，colStyle也变
             colClass() {
-                let {span,offset,ipad,narrowPc,pc,widePc} = this
+                let {span, offset, ipad, narrowPc, pc, widePc} = this
+                // let createClasses = this.createClasses
                 return [
-                    span && `col-${span}`,
-                    offset && `offset-${offset}`,
-                    
-                    // 三元运算符解决不传值会有bug
-                    ... (ipad ? [`col-ipad-${ipad.span}`] : []),
-                    ... (narrowPc ? [`col-narrow-pc-${narrowPc.span}`] : []),
-                    ... (pc ? [`col-pc-${pc.span}`] : []),
-                    ... (widePc ? [`col-wide-pc-${widePc.span}`] : []),
+                    ... this.createClasses({span,offset}),
+                    ... this.createClasses(ipad,'ipad-'),
+                    ... this.createClasses(narrowPc,'narrow-pc-'),
+                    ... this.createClasses(pc,'pc-'),
+                    ... this.createClasses(widePc,'wide-pc-')
                 ]
             },
             colStyle() {
@@ -85,7 +92,7 @@
                 }
             }
         }
-        @media (min-width: 769px){ // 770
+        @media (min-width: 769px) { // 770
             $class-prefix: col-narrow-pc-;
             @for $n from 1 through 24 {
                 &.#{$class-prefix}#{$n} {
