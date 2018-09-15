@@ -45,13 +45,13 @@
         computed: {             // mounted，gutter变了，colStyle也变
             colClass() {
                 let {span, offset, ipad, narrowPc, pc, widePc} = this
-                // let createClasses = this.createClasses
+                let createClasses = this.createClasses
                 return [
-                    ... this.createClasses({span,offset}),
-                    ... this.createClasses(ipad,'ipad-'),
-                    ... this.createClasses(narrowPc,'narrow-pc-'),
-                    ... this.createClasses(pc,'pc-'),
-                    ... this.createClasses(widePc,'wide-pc-')
+                    ... createClasses({span,offset}),
+                    ... createClasses(ipad,'ipad-'),
+                    ... createClasses(narrowPc,'narrow-pc-'),
+                    ... createClasses(pc,'pc-'),
+                    ... createClasses(widePc,'wide-pc-')
                 ]
             },
             colStyle() {
