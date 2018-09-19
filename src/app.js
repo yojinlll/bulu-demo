@@ -52,8 +52,7 @@ new Vue ({
             this.$toast (`恭喜你获得了${parseInt (Math.random () * 10000)}奖金`, {
                 position: position,
                 enableHtml: true,
-                autoClose: false,
-                autoCloseDelay: 3,
+                autoClose: 3,
                 closeButton: {
                     text: '点击关闭',
                     callback () {
