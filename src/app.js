@@ -39,9 +39,18 @@ new Vue ({
     created () {
     },
     methods: {
-        showToast () {
-            this.$toast (`恭喜你获得了${parseInt(Math.random()*10000)}奖金`, {
-                position: 'middle',
+        showToast1 () {
+            this.showToast ('top')
+        },
+        showToast2 () {
+            this.showToast ('middle')
+        },
+        showToast3 () {
+            this.showToast ('bottom')
+        },
+        showToast (position) {
+            this.$toast (`恭喜你获得了${parseInt (Math.random () * 10000)}奖金`, {
+                position: position,
                 enableHtml: true,
                 autoClose: false,
                 autoCloseDelay: 3,
