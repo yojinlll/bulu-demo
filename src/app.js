@@ -36,11 +36,18 @@ new Vue({
         loading3: false,
         message: 'v-model',
     },
-    created () {
+    created() {
     },
     methods: {
-        showToast () {
-            this.$toast('hahaha,追不到我吧')
+        showToast() {
+            this.$toast('<p>hello,<strong>BOY</strong></p>', {enableHtml:true, autoCloseDelay:33,
+                closeButton: {
+                    text: '点击关闭',
+                        callback () {
+                        console.log("用户说他知道了")
+                    }
+                }
+            })
         }
     }
 })
