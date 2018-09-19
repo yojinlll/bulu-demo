@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" ref="wrapper">
+    <div class="toast" ref="wrapper" :class="toastClasses">
         <div class="message">
             <slot v-if="!enableHtml"></slot>
             <div v-else v-html="$slots.default[0]"></div>
@@ -33,20 +33,29 @@
             enableHtml: {
                 type: Boolean,
                 default: false
-            }
+            },
+            position: {
+                type: String,
+                default: 'top',
+                validator (value) {
+                    return ['top', 'bottom', 'middle'].indexOf (value) >= 0
+                }
+            },
         },
         created () {
-            console.log (this.closeButton)
         },
         mounted () {
             this.execAutoClose ()
             this.updateStyles ()
 
         },
-        /*
-        this.$refs.line.style.height = this.$refs.wrapper.style.height
-        目标：用JS控制line为响应高度，但无法用该语法获取style样式
-         */
+        computed: {
+            toastClasses () {
+                return {
+                    [`position-${this.position}`]: true
+                }
+            }
+        },
         methods: {
             updateStyles () {
                 this.$nextTick (() => {
@@ -83,12 +92,11 @@
     $toast-bg: rgba(0, 0, 0, 0.75);
     .toast {
         font-size: $font-size; min-height: $toast-min-height; line-height: 1.8;
-        position: fixed; top: 10px; left: 50%; transform: translateX(-50%);
-        background: $toast-bg; padding: 0 16px;
-        align-items: center; display: flex;
+        position: fixed; background: $toast-bg; padding: 0 16px;
+        align-items: center; display: flex; color: white;
         border-radius: 4px; box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.50);
-        color: white;
-        .message{
+        left: 50%;
+        .message {
             padding: 8px 0;
         }
         .close {
@@ -100,5 +108,18 @@
             border-left: 1px solid #666;
             margin-left: 16px;
         }
+        &.position-top {
+            top: 0;
+            transform: translateX(-50%);
+        }
+        &.position-bottom {
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+        &.position-middle {
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
     }
 </style>

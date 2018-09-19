@@ -14,21 +14,21 @@ import Toast from './toast'
 import plugin from './plugin'
 
 
-Vue.component('g-button', Button)
-Vue.component('g-icon', Icon)
-Vue.component('g-button-group', ButtonGroup)
-Vue.component('g-input', Input)
-Vue.component('g-row', Row)
-Vue.component('g-col', Col)
-Vue.component('g-layout', Layout)
-Vue.component('g-sider', Sider)
-Vue.component('g-header', Header)
-Vue.component('g-content', Content)
-Vue.component('g-footer', Footer)
-Vue.component('g-toast', Toast)
-Vue.use(plugin)
+Vue.component ('g-button', Button)
+Vue.component ('g-icon', Icon)
+Vue.component ('g-button-group', ButtonGroup)
+Vue.component ('g-input', Input)
+Vue.component ('g-row', Row)
+Vue.component ('g-col', Col)
+Vue.component ('g-layout', Layout)
+Vue.component ('g-sider', Sider)
+Vue.component ('g-header', Header)
+Vue.component ('g-content', Content)
+Vue.component ('g-footer', Footer)
+Vue.component ('g-toast', Toast)
+Vue.use (plugin)
 
-new Vue({
+new Vue ({
     el: '#app',
     data: {
         loading1: false,
@@ -36,18 +36,22 @@ new Vue({
         loading3: false,
         message: 'v-model',
     },
-    created() {
+    created () {
+        this.$toast ('<p>hello,<strong>BOY</strong></p>', {
+            position: 'bottom',
+            enableHtml: true,
+            autoClose: false,
+            autoCloseDelay: 3,
+            closeButton: {
+                text: '点击关闭',
+                callback () {
+                    console.log ("用户说他知道了")
+                }
+            }
+        })
     },
     methods: {
-        showToast() {
-            this.$toast('<p>hello,<strong>BOY</strong></p>', {enableHtml:true, autoCloseDelay:33,
-                closeButton: {
-                    text: '点击关闭',
-                        callback () {
-                        console.log("用户说他知道了")
-                    }
-                }
-            })
+        showToast () {
         }
     }
 })
