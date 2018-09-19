@@ -37,21 +37,21 @@ new Vue ({
         message: 'v-model',
     },
     created () {
-        this.$toast ('<p>hello,<strong>BOY</strong></p>', {
-            position: 'bottom',
-            enableHtml: true,
-            autoClose: false,
-            autoCloseDelay: 3,
-            closeButton: {
-                text: '点击关闭',
-                callback () {
-                    console.log ("用户说他知道了")
-                }
-            }
-        })
     },
     methods: {
         showToast () {
+            this.$toast (`恭喜你获得了${parseInt(Math.random()*10000)}奖金`, {
+                position: 'middle',
+                enableHtml: true,
+                autoClose: false,
+                autoCloseDelay: 3,
+                closeButton: {
+                    text: '点击关闭',
+                    callback () {
+                        console.log ("用户说他知道了")
+                    }
+                }
+            })
         }
     }
 })

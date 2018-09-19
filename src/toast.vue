@@ -59,7 +59,7 @@
         methods: {
             updateStyles () {
                 this.$nextTick (() => {
-                    console.log (this.$refs.wrapper.getBoundingClientRect ())
+                    // console.log (this.$refs.wrapper.getBoundingClientRect ())
                     this.$refs.line.style.height =
                         `${this.$refs.wrapper.getBoundingClientRect ().height}px`
                 })
