@@ -37,9 +37,9 @@
                 if(vm.$options.name === 'BuluTabsHead'){
                     vm.$children.forEach((childVm)=>{
                         if(childVm.$options.name === 'BuluTabsItem' && childVm.name === this.selected){
-                            console.log (childVm)
-                            console.log (childVm.$el)
-                            console.log (childVm.name)
+                            // console.log (childVm)
+                            // console.log (childVm.$el)
+                            // console.log (childVm.name)
                             this.eventBus.$emit('update:selected',this.selected,childVm)
                         }
                     })
