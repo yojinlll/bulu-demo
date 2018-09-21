@@ -5,7 +5,13 @@
 </template>
 <script>
     export default {
-        name: 'BuluTabsPane'
+        name: 'BuluTabsPane',
+        inject:['eventBus'],
+        created(){
+            this.eventBus.$on('update:selected',()=>{
+                console.log (1)
+            })
+        }
     }
 </script>
 <style lang="scss" scoped>

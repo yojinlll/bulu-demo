@@ -5,7 +5,11 @@
 </template>
 <script>
     export default {
-        name: 'BuluTabsBody'
+        name: 'BuluTabsBody',
+        inject:['eventBus'],
+        created(){
+
+        }
     }
 </script>
 <style lang="scss" scoped>
