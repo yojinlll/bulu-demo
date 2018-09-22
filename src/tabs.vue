@@ -32,6 +32,11 @@
             }
         },
         mounted () {
+            // this.$children 获取子组件，非子元素
+            if(this.$children.length === 0 ) {
+                console && console.warn &&
+                console.warn('tabs 没有子组件 tabs-head 和 tabs-body')
+            }
             // 遍历tabs，找到 BuluTabsHead ，再找到 BuluTabsItem，再执行 if
             this.$children.forEach((vm)=>{
                 if(vm.$options.name === 'BuluTabsHead'){
