@@ -132,6 +132,7 @@
             margin-top: -10px;
             &::before, &::after {
                 left: 10px;
+                border-bottom: none;
             }
             &::before {
                 border-top-color: black;
@@ -146,6 +147,7 @@
             margin-top: 10px;
             &::before, &::after {
                 left: 10px;
+                border-top: none;
             }
             &::before {
                 border-bottom-color: black;
@@ -162,6 +164,7 @@
             &::before, &::after {
                 transform: translateY(-50%);
                 top: 50%;
+                border-right: none;
             }
             &::before {
                 border-left-color: black;
@@ -177,6 +180,7 @@
             &::before, &::after {
                 transform: translateY(-50%);
                 top: 50%;
+                border-left: none;
             }
             &::before {
                 border-right-color: black;
