@@ -1,5 +1,5 @@
 <template>
-    <div class="popover" @click="onClick" ref="popover">     <!--stop 阻止冒泡给 document (异步)-->
+    <div class="popover" ref="popover">     <!--stop 阻止冒泡给 document (异步)-->
         <div ref="contentWrapper" class="content-wrapper" v-if="visible"
              :class="{[`position-${position}`]:true}">
             <slot name="content"></slot>
@@ -16,12 +16,35 @@
         data () {
             return {visible: false}
         },
+        mounted () {
+            if (this.trigger === 'click') {
+                this.$refs.popover.addEventListener('click', this.onClick)
+            } else {
+                this.$refs.popover.addEventListener('mouseenter', this.open)
+                this.$refs.popover.addEventListener('mouseleave', this.close)
+            }
+        },
+        destroyed () {
+            if (this.trigger === 'click') {
+                this.$refs.popover.removeEventListener('click', this.onClick)
+            } else {
+                this.$refs.popover.removeEventListener('mouseenter', this.open)
+                this.$refs.popover.removeEventListener('mouseleave', this.close)
+            }
+        },
         props: {
             position: {
                 type: String,
                 default: 'top',
-                validate (value) {
+                validator (value) {
                     return ['top', 'bottom', 'left', 'right'].indexOf (value) >= 0
+                }
+            },
+            trigger: {
+                type: String,
+                default: 'click',
+                validator (value) {
+                    return ['click', 'hover'].indexOf (value) >= 0
                 }
             }
         },
@@ -42,15 +65,11 @@
             },
             onClickDocument (e) {
                 if (this.$refs.popover &&
-                    (this.$refs.popover === e.Target || this.$refs.popover.contains (e.Target))
-                ) {
-                    return
-                }
+                    (this.$refs.popover === e.target || this.$refs.popover.contains (e.target))
+                ) { return }
                 if (this.$refs.contentWrapper &&
                     (this.$refs.contentWrapper === e.target || this.$refs.contentWrapper.contains (e.target))        // 该节点位置移动过
-                ) {
-                    return
-                }
+                ) { return }
                 this.close ()
             },
             open () {
