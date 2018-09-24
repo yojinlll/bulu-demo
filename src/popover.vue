@@ -2,7 +2,7 @@
     <div class="popover" ref="popover">     <!--stop 阻止冒泡给 document (异步)-->
         <div ref="contentWrapper" class="content-wrapper" v-if="visible"
              :class="{[`position-${position}`]:true}">
-            <slot name="content"></slot>
+            <slot name="content" :bulu="close"></slot>
         </div>
         <span ref="triggerWrapper" style="display: inline-block">
             <slot></slot>
@@ -50,7 +50,7 @@
         },
         methods: {
             positionContent () {
-                const {contentWrapper, triggerWrapper} = this.$refs         // 析构语法声明变量
+                const {contentWrapper, triggerWrapper} = this.$refs         // 解构语法声明变量
                 document.body.appendChild (contentWrapper)
                 const {width, height, top, left} = triggerWrapper.getBoundingClientRect ()
                 const {height: height2} = contentWrapper.getBoundingClientRect ()

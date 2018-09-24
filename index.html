@@ -35,11 +35,13 @@
     <div style="overflow: hidden; padding-top: 150px; padding-bottom: 40px;"
     @click="yyy">
         <g-popover position="bottom">
-            <template slot="content">
+            <template slot="content" slot-scope="close">
+                {{close.bulu}}
                 <div>balabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabala</div>
                 <div>balabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabalabala</div>
+                <g-button @click="close.bulu">关闭</g-button>
             </template>
-                <g-button>点我</g-button>
+            <g-button>点我</g-button>
         </g-popover>
         <g-popover position="top">
             <template slot="content">
