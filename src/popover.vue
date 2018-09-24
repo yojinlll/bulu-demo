@@ -1,6 +1,6 @@
 <template>
-    <div id="popover" class="popover" @click.stop="xxx">     <!--stop 阻止冒泡给 document (异步)-->
-        <div ref="contentWrapper" class="content-wrapper" v-if="visible" @click.stop>
+    <div class="popover" @click="onClick" ref="popover">     <!--stop 阻止冒泡给 document (异步)-->
+        <div ref="contentWrapper" class="content-wrapper" v-if="visible">
             <slot name="content"></slot>
         </div>
         <span ref="triggerWrapper">
@@ -16,29 +16,43 @@
             return {visible: false}
         },
         methods: {
-            xxx () {
-                this.visible = !this.visible                // 单独点击 <.popover> (包含button)，可触发 content 展示与关闭
 
-                if (this.visible === true) {                // 令点击 document 可以关闭 content
-                    this.$nextTick (() => {                 // 异步
+            positionContent(){
+                document.body.appendChild(this.$refs.contentWrapper)
+                let {width,height,top,left} = this.$refs.triggerWrapper.getBoundingClientRect()
+                this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
+                this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+            },
 
-                        document.body.appendChild (this.$refs.contentWrapper)       // 避免与 overflow hidden 冲突
-                        let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect ()
-                        this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-                        this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+            onClickDocument(e){
+                if(this.$refs.popover &&
+                    (this.$refs.popover === e.Target || this.$refs.popover.contains(e.Target))
+                ) { return }
+                this.close()
+            },
+            open(){
+                this.visible = true
 
-                        let eventHandler = () => {
-                            this.visible = false
-                            console.log ('document 隐藏 popover')
-                            document.removeEventListener ('click', eventHandler)
-                            // 不移除，则 addEverListener 会一直叠加，且不用 bind 绑定 this，那样等于一个新的函数，移除无效
-                        }
-                        document.addEventListener ('click', eventHandler)            // 不监听body，因为body有区域范围
-                    })
-                } else {
-                    console.log ('vm 隐藏 popover')
+                // nextTick: v-if 为 false 时，这个节点并不存在，所以要用异步，v-if 为 true，节点出现后才进行位置调整
+                this.$nextTick(()=>{
+                    this.positionContent()
+                    document.addEventListener('click',this.onClickDocument)     // onClickDocument 中的 if 也基于节点来判断
+                })
+            },
+
+            close(){
+                this.visible = false
+                document.removeEventListener('click',this.onClickDocument)
+            },
+            onClick(event){
+                if(this.$refs.triggerWrapper.contains(event.target)){
+                    if(this.visible === true){
+                        this.close()
+                    }else{
+                        this.open()
+                    }
                 }
-            }
+            },
         },
     }
 </script>
