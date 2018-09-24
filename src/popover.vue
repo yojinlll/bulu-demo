@@ -2,7 +2,7 @@
     <div class="popover" ref="popover">     <!--stop 阻止冒泡给 document (异步)-->
         <div ref="contentWrapper" class="content-wrapper" v-if="visible"
              :class="{[`position-${position}`]:true}">
-            <slot name="content" :bulu="close"></slot>
+            <slot name="content" :close="close"></slot>
         </div>
         <span ref="triggerWrapper" style="display: inline-block">
             <slot></slot>
