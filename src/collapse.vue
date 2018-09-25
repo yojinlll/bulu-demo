@@ -5,8 +5,27 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     export default {
-        name: "BuluCollapse"
+        name: "BuluCollapse",
+        props: {
+            single: {
+                type: Boolean,
+                default: false
+            }
+        },
+        data () {
+            return {
+                eventBus: new Vue()
+            }
+        },
+        provide () {
+            if (this.single) {      // 用 single 绑定 eventBus
+                return {
+                    eventBus: this.eventBus
+                }
+            }
+        }
     }
 </script>
 

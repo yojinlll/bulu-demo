@@ -1,6 +1,6 @@
 <template>
     <div class="collapseItem">
-        <div class="title" @click="open=!open">
+        <div class="title" @click="toggle">
             {{title}}
         </div>
         <div class="content" v-if="open">
@@ -20,7 +20,28 @@
         },
         data(){
             return { open:false }
-        }
+        },
+        inject: ['eventBus'],
+        mounted () {
+            this.eventBus && this.eventBus.$on('update:selected', (vm) => {             // single 选项时，eventBus 存在
+                if (vm !== this) {
+                    this.close()
+                }
+            })
+        },
+        methods: {
+            toggle () {
+                if (this.open) {
+                    this.open = false
+                } else {
+                    this.open = true
+                    this.eventBus && this.eventBus.$emit('update:selected', this)
+                }
+            },
+            close () {
+                this.open = false
+            }
+        },
     }
 </script>
 
@@ -30,6 +51,7 @@
     .collapseItem {
         > .title {
             border: 1px solid $grey;
+            background: #eee;
             margin-top: -1px;
             margin-left: -1px;
             margin-right: -1px;
