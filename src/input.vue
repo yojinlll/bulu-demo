@@ -41,17 +41,11 @@
 
 </script>
 <style lang="scss" scoped>
-    $height: 32px;
-    $border-color: #999;
-    $border-color-hover: #222;
-    $border-radius: 4px;
-    $font-size: 12px;
-    $box-shadow-color: rgba(0, 0, 0, 0.5);
-    $red: #f1453d;
+    @import "var";
     .wrapper { font-size: $font-size; display: inline-flex; align-items: center;
         > :not( last-child ){ margin-right: .5em; }
         > input {
-            height: $height;
+            height: 32px;
             border: 1px solid $border-color;
             border-radius: 4px;
             padding: 0 8px;
