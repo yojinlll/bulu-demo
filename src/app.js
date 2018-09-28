@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import Button from './button'
-import Icon from './icon'
+// import Icon from './icon'
 import ButtonGroup from './button-group'
 
 import Input from './input'
@@ -30,7 +30,7 @@ import CollapseItem from './collapse-item'
 
 
 Vue.component ('g-button', Button)
-Vue.component ('g-icon', Icon)
+// Vue.component ('g-icon', Icon)
 Vue.component ('g-button-group', ButtonGroup)
 Vue.component ('g-input', Input)
 Vue.component ('g-row', Row)
@@ -55,10 +55,10 @@ new Vue ({
     el: '#app',
     data: {
         loading1: false,
-        loading2: true,
-        loading3: false,
-        message: 'v-model',
-        selectedTab: 'sports',
+        // loading2: true,
+        // loading3: false,
+        message: '双向绑定',
+        selectedTab: '1',
     },
     created () {
     },
@@ -85,8 +85,12 @@ new Vue ({
                 }
             })
         },
-        yyy(){
+        yyy () {
             console.log ('yyy')
+        },
+        inputChange (e) {
+            console.log (e)
         }
+
     }
 })

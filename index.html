@@ -27,22 +27,104 @@
         body {
             font-size: var(--font-size);
         }
+        .demoCol{
+            border: 1px solid #999;
+            background: #eee;
+            height: 64px;
+        }
+        .demoRow{
+            margin: 10px;
+        }
+
     </style>
 </head>
 <body>
 
 <div id="app" style="padding: 100px">
-    <g-collapse style="margin-bottom: 20px">
-        <g-collapse-item title="标题1">内容1</g-collapse-item>
-        <g-collapse-item title="标题2">内容2</g-collapse-item>
-        <g-collapse-item title="标题3">内容3</g-collapse-item>
-    </g-collapse>
-    <g-collapse single>
-        <g-collapse-item title="标题1">内容1</g-collapse-item>
-        <g-collapse-item title="标题2">内容2</g-collapse-item>
-        <g-collapse-item title="标题3">内容3</g-collapse-item>
-    </g-collapse>
+    <div class="collapseComponent" style="margin-bottom: 50px">
+        <g-collapse style="margin-bottom: 20px" :selected.sync="selectedTab">
+            <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
+            <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
+            <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
+        </g-collapse>
+        <g-collapse>
+            <g-collapse-item title="标题1">内容1</g-collapse-item>
+            <g-collapse-item title="标题2">内容2</g-collapse-item>
+            <g-collapse-item title="标题3">内容3</g-collapse-item>
+        </g-collapse>
+    </div>
+    <div class="buttonComponent" style="margin-bottom: 50px">
+        <g-button icon="left">默认按钮</g-button>
+        <g-button icon="settings" :loading="loading1" @click="loading1 = !loading1">默认按钮</g-button>
+        <g-button icon="right" icon-position="right">默认按钮</g-button>
+        <g-button disabled>默认按钮</g-button>
+    </div>
+    <div class="inputComponent" style="margin-bottom: 50px">
+        <g-input v-model="message"></g-input>
+        <p>{{message}}</p>
+        <g-input value="hellow,world!" disabled></g-input>
+        <g-input value="hellow,world!" readonly></g-input>
+        <g-input value="hellow,world!" error="不许动！你已经被包围了!"></g-input>
+    </div>
+    <div class="rowComponent" style="margin-bottom: 50px">
+        <g-row class="demoRow" align="center" gutter="20">
+            <g-col span="8">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="8">
+                <div class="demoCol">hi</div>
+            </g-col>
+        </g-row>
+        <g-row class="demoRow" align="left" gutter="20">
+            <g-col span="6">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="6">
+                <div class="demoCol">hi</div>
+            </g-col>
+        </g-row>
+        <g-row class="demoRow" align="right" gutter="20">
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+        </g-row>
+        <g-row class="demoRow" gutter="20">
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+            <g-col span="4">
+                <div class="demoCol">hi</div>
+            </g-col>
+        </g-row>
+    </div>
+    <div class="toastComponent" style="margin-bottom: 50px">
+        <g-button @click="$toast('点击弹出提示')">上方弹出</g-button>
+        <g-button @click="$toast('点击弹出提示', {position:'middle'})">中间弹出</g-button>
+        <g-button @click="$toast('点击弹出提示', {position:'bottom'})">下方弹出</g-button>
+    </div>
 </div>
+
 
 <script src="./src/app.js"></script>
 

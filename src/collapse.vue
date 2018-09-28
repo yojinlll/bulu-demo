@@ -6,25 +6,33 @@
 
 <script>
     import Vue from 'vue'
+
     export default {
         name: "BuluCollapse",
         props: {
             single: {
                 type: Boolean,
                 default: false
+            },
+            selected: {
+                type: String,
             }
         },
         data () {
             return {
-                eventBus: new Vue()
+                eventBus: new Vue ()
             }
         },
         provide () {
-            if (this.single) {      // 用 single 绑定 eventBus
-                return {
-                    eventBus: this.eventBus
-                }
+            return {
+                eventBus: this.eventBus
             }
+        },
+        mounted () {
+            this.eventBus.$emit ('update:selected', this.selected)
+            this.eventBus.$on ('update:selected', (name) => {
+                this.$emit ('update:selected', name)
+            })
         }
     }
 </script>
