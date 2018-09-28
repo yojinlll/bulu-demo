@@ -58,7 +58,7 @@ new Vue ({
         // loading2: true,
         // loading3: false,
         message: '双向绑定',
-        selectedTab: '1',
+        selectedTab: ['2','1'],
     },
     created () {
     },

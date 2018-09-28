@@ -4,25 +4,19 @@
         <!--    组件化：    index { g-button { g-icon } }   -->
         <g-icon class="icon" v-if="icon && !loading" :name="icon"></g-icon>     <!--name 绑定 icon.vue 的props-->
         <g-icon class="loading icon" v-if="loading" name="loading"></g-icon>
-        <div class="content">
+        <div class="g-button-content">
             <slot></slot>
         </div>
     </button>
 </template>
 <script>
     // 方法一：导入 icon 组件，避免测试错误
-    import Vue from 'vue'
     import Icon from './icon'
-    Vue.component('g-icon', Icon)
 
     export default {
-        /*
-        方法二：更方便的引入 （ 注意要 components )
         components:{
             'g-icon':Icon
         },
-        */
-
         name:'BuluButton',
 
         props:{
@@ -61,10 +55,10 @@
         &:focus{ outline:none; }
 
         /*css控制svg样式*/
-        > .content{ order: 2; }
+        > .g-button-content{ order: 2; }
         > .icon{ order: 1; margin-right: .1em; }
         &.icon-right{
-            > .content{ order: 1; }
+            > .g-button-content{ order: 1; }
             > .icon{ order: 2; margin-right: 0; margin-left: .1em; }
         }
 
